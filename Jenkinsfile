@@ -29,5 +29,12 @@ pipeline {
                 '''
             }
         }
+        stage('Clean Up Workspace') {
+            steps {
+                echo "Clean Up workspace"
+                sh '''
+                echo "Cleaned"
+                '''
+            }
     }
 }
