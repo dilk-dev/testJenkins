@@ -4,34 +4,28 @@ pipeline {
             label 'docker-agent-python'
             }
       }
-    triggers {
-        pollSCM '* * * * *'
-    }
     stages {
-        stage('Build') {
+        stage('Create Zip File') {
             steps {
-                echo "Building.."
+                echo "Create Zip File"
                 sh '''
-                cd myapp
-                pip install -r requirements.txt
+                echo "doing the Zipping.."
                 '''
             }
         }
-        stage('Test') {
+        stage('Update Lambda Function') {
             steps {
-                echo "Testing.."
+                echo "Update Lambda Function"
                 sh '''
-                cd myapp
-                python3 hello.py
-                python3 hello.py --name=Dilk
+                echo "Updating Lambda Function.."
                 '''
             }
         }
-        stage('Deliver') {
+        stage('Upload to S3') {
             steps {
-                echo 'Deliver....'
+                echo "Upload to S3"
                 sh '''
-                echo "doing delivery stuff.."
+                echo "Uploading to S3"
                 '''
             }
         }
